@@ -2,11 +2,17 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const MongoClient = require('mongodb').MongoClient;
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 
 const publicPath = path.join(__dirname, '../client/public');
 app.use(express.static(publicPath));
 app.use(bodyParser.json());
+
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 MongoClient.connect('mongodb://localhost:27017')
   .then((client) => {
