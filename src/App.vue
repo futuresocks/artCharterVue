@@ -1,16 +1,15 @@
 <template lang="html">
   <div>
-    <div id="mapContainer"></div>
-    <button v-on:click="countryFocus">GLASGAE</button>
+    <mapView :murals="murals"></mapView>
   </div>
 </template>
 
 <script>
+import MapView from "./components/MapView.vue";
+
 export default {
   data(){
     return {
-      osmLayer: new L.TileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"),
-      map: null,
       murals: [{
         id: 3,
         title: "St. Mungo",
@@ -102,28 +101,14 @@ export default {
       }]
     }
   },
-  methods: {
-    countryFocus(){
-      this.map.flyTo([55.8642, -4.2518], 9)
-    }
+  components: {
+    'mapView': MapView
   },
   mounted(){
-    this.map = L.map('mapContainer')
-    .setView([55.8642, -4.2518], 9)
-    .addLayer(this.osmLayer);
-
-    this.murals.forEach(mural => {
-      L.marker(mural.coords)
-      .addTo(this.map)
-      .bindPopup(mural.about).openPopup()
-    })
+      //fetch mural data
   }
 }
 </script>
 
-<style lang="css">
-#mapContainer{
-  width:500px;
-  height:500px;
-}
+<style lang="css" scoped>
 </style>
