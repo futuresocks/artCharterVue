@@ -1,11 +1,12 @@
 <template lang="html">
   <div>
-    <mapView :murals="murals"></mapView>
+    <mapView :murals="murals"/>
   </div>
 </template>
 
 <script>
 import MapView from "./components/MapView.vue";
+import { eventBus } from './main.js';
 
 export default {
   data(){
@@ -106,6 +107,7 @@ export default {
   },
   mounted(){
       //fetch mural data
+      eventBus.$on('marker-clicked', (index) => console.log(index))
   }
 }
 </script>

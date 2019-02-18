@@ -3,6 +3,8 @@
 </template>
 
 <script>
+import { eventBus } from '../main.js';
+
 export default {
   name: 'mapView',
   props: ['murals'],
@@ -21,9 +23,7 @@ export default {
     this.murals.forEach((mural, index) => {
         L.marker(mural.coords)
         .addTo(this.map)
-        .on('click', () => {
-          console.log(index);
-        })
+        .on('click', () => eventBus.$emit('marker-clicked', index))
   })
   }
 }
