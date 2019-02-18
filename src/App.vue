@@ -11,6 +11,7 @@ import { eventBus } from './main.js';
 export default {
   data(){
     return {
+      selectedMural: null,
       murals: [{
         id: 3,
         title: "St. Mungo",
@@ -107,7 +108,7 @@ export default {
   },
   mounted(){
       //fetch mural data
-      eventBus.$on('marker-clicked', (index) => console.log(index))
+      eventBus.$on('marker-clicked', index => this.selectedMural = this.murals[index])
   }
 }
 </script>
