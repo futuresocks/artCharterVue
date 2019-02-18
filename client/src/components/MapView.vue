@@ -17,14 +17,17 @@ export default {
   },
   mounted(){
     this.map = L.map('mapContainer')
-    .setView([55.8642, -4.2518], 13)
+    .setView([55.8642, -4.2518], 16)
     .addLayer(this.osmLayer);
-
-    this.murals.forEach((mural, index) => {
+  },
+  watch: {
+    murals: function(murals){
+      murals.forEach((mural, index) => {
         L.marker(mural.coords)
         .addTo(this.map)
         .on('click', () => eventBus.$emit('marker-clicked', index))
-  })
+      })
+    }
   }
 }
 </script>
