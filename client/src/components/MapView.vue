@@ -17,7 +17,7 @@ export default {
   },
   mounted(){
     this.map = L.map('mapContainer')
-    .setView([55.8642, -4.2518], 16)
+    .setView([55.8642, -4.2518], 14)
     .addLayer(this.osmLayer);
   },
   watch: {
@@ -34,7 +34,7 @@ export default {
 
 <style lang="css" scoped>
 #mapContainer{
-  width:500px;
+  width:100%;
   height:500px;
 }
 </style>

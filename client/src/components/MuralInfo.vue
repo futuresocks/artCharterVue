@@ -1,8 +1,9 @@
 <template lang="html">
     <div v-if="mural">
+      <muralImage :imgTag="mural.imageTags"/>
       <h1>{{mural.title}}</h1>
       <h2>{{mural.artist}}</h2>
-      <muralImage :imgTag="mural.imageTags"/>
+      <p>{{mural.about}}</p>
     </div>
 </template>
 
